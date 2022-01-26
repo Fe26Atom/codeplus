@@ -8,7 +8,8 @@ public class No3085 {
 
 	static int N;
 	static char[][] mat;
-
+	static int max;
+	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine());
@@ -23,12 +24,10 @@ public class No3085 {
 			mat[i] = line.toCharArray();
 		}
 
-		int max = 0;
+		max = 0;
 
 		for (int i = 0; i < N; i++) {
-			int count = countCandy(i, i);
-
-			max = count < max ? max : count;
+			countCandy(i, i);
 		}
 
 		for (int cx = 0; cx < N; cx++) {
@@ -46,12 +45,9 @@ public class No3085 {
 						mat[cx][cy] = mat[nx][ny];
 						mat[nx][ny] = temp;
 						
-						int count = countCandy(cx, cy);
-						max = count < max ? max : count;
-						count = countCandy(nx, ny);
-						max = count < max ? max : count;
-						
-						
+						countCandy(cx, cy);
+						countCandy(nx, ny);
+
 						temp = mat[cx][cy];
 						mat[cx][cy] = mat[nx][ny];
 						mat[nx][ny] = temp;
@@ -63,9 +59,8 @@ public class No3085 {
 		System.out.println(max);
 	}
 
-	private static int countCandy(int i, int j) {
+	private static void countCandy(int i, int j) {
 		int count = 1;
-		int max = 0;
 
 		for (int x = 1; x < N; x++) {
 			if (mat[x - 1][j] == mat[x][j])
@@ -84,6 +79,5 @@ public class No3085 {
 				count = 1;
 			max = count < max ? max : count;
 		}
-		return max;
 	}
 }
