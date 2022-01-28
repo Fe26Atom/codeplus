@@ -34,12 +34,12 @@ public class No15655 {
 
 		Arrays.sort(nums);
 
-		dfs(0);
+		dfs(0,0);
 		System.out.println(sb);
 		br.close();
 	}
 
-	private static void dfs(int depth) {
+	private static void dfs(int start, int depth) {
 		if (depth == M) {
 			for (int i : arr) {
 				sb.append(i).append(" ");
@@ -49,11 +49,11 @@ public class No15655 {
 			return;
 		}
 
-		for (int i = 0; i < N; i++) {
+		for (int i = start; i < N; i++) {
 			if (!visit[i]) {
 				visit[i] = true;
 				arr[depth] = nums[i];
-				dfs(depth + 1);
+				dfs(i + 1, depth + 1);
 				visit[i] = false;
 			}
 		}

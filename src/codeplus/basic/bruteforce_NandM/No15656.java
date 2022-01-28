@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class No15654 {
+public class No15656 {
 
 	static int N;
 	static int M;
@@ -25,7 +25,6 @@ public class No15654 {
 
 		arr = new int[M];
 		nums = new int[N];
-		visit = new boolean[N];
 		st = new StringTokenizer(br.readLine());
 
 		for (int i = 0; i < N; i++) {
@@ -50,12 +49,8 @@ public class No15654 {
 		}
 
 		for (int i = 0; i < N; i++) {
-			if (!visit[i]) {
-				visit[i] = true;
-				arr[depth] = nums[i];
-				dfs(depth + 1);
-				visit[i] = false;
-			}
+			arr[depth] = nums[i];
+			dfs(depth + 1);
 		}
 	}
 }
