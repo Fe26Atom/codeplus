@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class No15654 {
+public class No15655 {
 
 	static int N;
 	static int M;
@@ -34,12 +34,12 @@ public class No15654 {
 
 		Arrays.sort(nums);
 
-		dfs(0,0);
+		dfs(0);
 		System.out.println(sb);
 		br.close();
 	}
 
-	private static void dfs(int start, int depth) {
+	private static void dfs(int depth) {
 		if (depth == M) {
 			for (int i : arr) {
 				sb.append(i).append(" ");
@@ -49,11 +49,11 @@ public class No15654 {
 			return;
 		}
 
-		for (int i = start; i < N; i++) {
+		for (int i = 0; i < N; i++) {
 			if (!visit[i]) {
 				visit[i] = true;
 				arr[depth] = nums[i];
-				dfs(i + 1, depth + 1);
+				dfs(depth + 1);
 				visit[i] = false;
 			}
 		}
