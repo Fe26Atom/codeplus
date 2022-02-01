@@ -7,39 +7,36 @@ import java.util.StringTokenizer;
 
 public class No14501 {
 	
-	static int[][] con;
-	static int N;
-	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 		
-		N = Integer.parseInt(br.readLine());
-		int arr[] = new int[21];
-		con = new int[N][2];
-		int max = 0;
+		int N = Integer.parseInt(br.readLine());
 		
-		for(int i=0; i<N; i++) {
+		int arr[] = new int [N + 1];
+		
+		for(int i=0; i< N; i++) {
 			st = new StringTokenizer(br.readLine());
-
-			con[i][0] = Integer.parseInt(st.nextToken());
-			con[i][1] = Integer.parseInt(st.nextToken());
+			
+			int T = Integer.parseInt(st.nextToken());
+			int P = Integer.parseInt(st.nextToken());
+			
+			if(i + T > N)
+				continue;
+			
+			if(arr[i + T] < arr[i] + P) {
+				arr[i + T] = arr[i] + P;
+				
+				for(int j=i + T; j<=N; j++) {
+					if(arr[i+T] > arr[j]){
+						arr[j] = arr[i + T];
+					}
+				}
+			}
 		}
 		
-		for(int i=0; i<N; i++) {
-			int end = i + con[i][0];
-
-			arr[end] = Math.max(max, arr[i] + con[i][1]);
-			max = Math.max(arr[end], max);
-		}
+		System.out.println(arr[N]);
 		
-		for(int i=0; i<N; i++) {
-			System.out.print(arr[i] + " ");
-		}
-		
-		System.out.println(max);
+		br.close();
 	}
-	
-	
-	
 }
