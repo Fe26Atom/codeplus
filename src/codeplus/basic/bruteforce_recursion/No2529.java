@@ -28,6 +28,7 @@ public class No2529 {
 		for(int i=0; i<k+1; i++) {
 			min[i] = 9;
 		}
+		
 		st = new StringTokenizer(br.readLine());
 		
 		for(int i=0; i<k; i++) {
@@ -35,6 +36,7 @@ public class No2529 {
 		}
 		
 		dfs(0);
+		
 		for(int i=0; i<k+1; i++) {
 			sb.append(max[i]);
 		}sb.append("\n");
