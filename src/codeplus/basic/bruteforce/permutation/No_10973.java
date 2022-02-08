@@ -22,6 +22,9 @@ public class No_10973 {
 				System.out.print(i + " ");
 			}System.out.println();
 		}
+		else {
+			System.out.println(-1);
+		}
 			
 		
 		br.close();
@@ -30,12 +33,11 @@ public class No_10973 {
 	private static boolean func(int[] arr) {
 		int i = arr.length - 1;
 		
-		while(i>0 && arr[i] < arr[i-1]) i--;
+		while(i>0 && arr[i] > arr[i-1]) i--;
 		if(i == 0) return false;
-		
 		int j = arr.length - 1;
 		
-		while(arr[j] <= arr[i-1]) j--;
+		while(arr[j] >= arr[i-1]) j--;
 		
 		swap(arr, i-1, j);
 		j = arr.length - 1;

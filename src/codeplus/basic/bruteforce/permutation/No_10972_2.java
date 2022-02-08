@@ -3,49 +3,57 @@ package codeplus.basic.bruteforce.permutation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.StringTokenizer;
 
-public class No_10972 {
-	
+public class No_10972_2 {
+
 	static int arr[];
 	static int N;
-	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
 		
 		N = Integer.parseInt(br.readLine());
-
-		arr = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+		arr = new int[N];
+		StringBuilder sb = new StringBuilder();
 		
-		if(check(arr)) {
-			for(int i : arr) {
-				System.out.print(i + " ");
-			}System.out.println();
+		st = new StringTokenizer(br.readLine());
+		for(int i=0; i<N; i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
 		}
+		if(check()) {
+			for(int i : arr) {
+				sb.append(i + " ");
+			}sb.append("\n");
+		}
+		else
+			sb.append(-1 + "\n");
+		System.out.println(sb);
 		br.close();
+		
 	}
 
-	private static boolean check(int[] arr) {
-		int i = arr.length - 1;
-		while(i > 0 && arr[i-1] > arr[i]) i--;
-		
+	private static boolean check() {
+		int i = N-1;
+		while(i >0 && arr[i-1] > arr[i]) i--;
 		if(i==0) return false;
 		
-		int j = arr.length - 1;
+		int j= N-1;
 		while(arr[j] <= arr[i-1]) j--;
 		
-		swap(arr, i-1, j);
-		j = arr.length - 1;
+		swap(i-1, j);
+		
+		j= N-1;
+		
 		while(i < j) {
-			swap(arr, i, j);
+			swap(i, j);
 			i++;
-			j--;
+			i--;
 		}
 		return true;
-		
 	}
 
-	private static void swap(int[] arr2, int i, int j) {
+	private static void swap(int i, int j) {
 		int temp = arr[i];
 		arr[i] = arr[j];
 		arr[j] = temp;
