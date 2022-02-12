@@ -1,5 +1,5 @@
 package codeplus.basic.bruteforce_bitMask;
-
+//비트마스크로 안 품
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
